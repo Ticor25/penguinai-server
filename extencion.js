@@ -6,6 +6,7 @@
             return {
                 id: 'penguinGPT',
                 name: 'PenguinAI',
+
                 color1: '#009CCC',
                 color2: '#0088B5',
                 color3: '#007A9E',
