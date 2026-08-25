@@ -16,7 +16,10 @@ app.add_middleware(
 )
 
 HF_TOKEN = os.getenv("HF_TOKEN", "").strip()
-MODEL = os.getenv("MODEL", "openai/gpt-oss-120b:fastest").strip()
+MODEL = os.getenv(
+    "MODEL",
+    "openai/gpt-oss-120b:fastest"
+).strip()
 
 HF_BASE_URL = "https://router.huggingface.co/v1"
 
@@ -111,3 +114,22 @@ async def check():
         "ok": True,
         "model": MODEL
     }
+
+
+@app.get("/health")
+async def health():
+    return {
+        "status": "healthy"
+    }
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    port = int(os.getenv("PORT", "7860"))
+
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=port
+    )
